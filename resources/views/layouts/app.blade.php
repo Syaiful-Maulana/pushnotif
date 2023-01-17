@@ -90,12 +90,12 @@
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
-            apiKey: "XXXXXXXXXXXXXXXXXXXXX",
-            authDomain: "XXXXXX.firebaseapp.com",
-            projectId: "XXXXXXXXXX",
-            storageBucket: "XXXXXXXXX.appspot.com",
-            messagingSenderId: "XXXXXX",
-            appId: "1:XXXXXX9820:web:XXXXXX5XX9b1XXe80cf1d9"
+            apiKey: "AIzaSyCyyzO2trIWsVlHGYzSxu2a_ymqSLUX2FM",
+            authDomain: "notif-agen.firebaseapp.com",
+            projectId: "notif-agen",
+            storageBucket: "notif-agen.appspot.com",
+            messagingSenderId: "838409690043",
+            appId: "1:838409690043:web:d9e136c9ecc7388172c29e",
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);

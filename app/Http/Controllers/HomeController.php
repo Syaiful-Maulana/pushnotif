@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Kutia\Larafirebase\Facades\Larafirebase;
 use App\Notifications\SendPushNotification;
 use App\Models\User;
-use Notification;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 class HomeController extends Controller
 {
     /**
@@ -32,7 +32,12 @@ class HomeController extends Controller
 
     public function updateToken(Request $request){
         try{
-            $request->user()->update(['fcm_token'=>$request->token]);
+            if (Auth::user()->fcm_token != $request->token){
+                $request->user()->update(['fcm_token'=>$request->token]);
+                return response()->json([
+                    'success'=>true
+                ]);
+            }
             return response()->json([
                 'success'=>true
             ]);
@@ -53,11 +58,11 @@ class HomeController extends Controller
         try{
             $fcmTokens = User::whereNotNull('fcm_token')->pluck('fcm_token')->toArray();
 
-            //Notification::send(null,new SendPushNotification($request->title,$request->message,$fcmTokens));
+            Notification::send(null,new SendPushNotification($request->title,$request->message,$fcmTokens));
 
             /* or */
 
-            //auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
+            // auth()->user()->notify(new SendPushNotification($request->title,$request->message,$fcmTokens));
 
             /* or */
 
